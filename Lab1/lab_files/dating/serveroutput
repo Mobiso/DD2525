@@ -1,0 +1,6 @@
+/Troupe/bin/troupec dating-server.trp -o ./out/dating-server.js
+node /Troupe/rt/built/troupe.js -f=./out/dating-server.js --id=../ids/id-server.json --trustmap=../trustmaps/client.json --aliases=aliases.json
+Running server node with identifier: QmdZfH8XiJAmrHmgKRUYQtnomR1ie9xBSwV2oWVLBL2hSB
+>>> Main thread finished with value: ()@{}%{}
+2026-03-30T10:15:47.231Z [p2p] [31merror[39m: Error: stream reset
+Makefile:2: recipe for target 'dating-server' failed

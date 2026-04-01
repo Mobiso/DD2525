@@ -1,0 +1,2 @@
+/Troupe/bin/troupec dating-client.trp -o ./out/dating-client.js
+node /Troupe/rt/built/troupe.js -f=./out/dating-client.js --trustmap=../trustmaps/client.json
