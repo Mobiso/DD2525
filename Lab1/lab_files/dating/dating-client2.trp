@@ -25,15 +25,24 @@ let
 
             val _ = attenuate(authority, lev)
             val _ = attenuate(authority, lev_other)  
+
+            (* val _ = _setProcessDebuggingName lev_other *)
+
+            val _ = debugpc() (*Here pc = {}, block = {}*)
+
             
             fun match_interest [] y = false|
-            match_interest (x::xs) y =
+            match_interest (x::xs) y =    (*Deconstruct list in another way?*)
+               let val _ = debugpc() in (*here the pc and block is {}*)
                if declassify_with_block(elem x y, authority, `{}`) then
                   true
                else
-                  match_interest xs y (* recursively looking for same interest x *) 
+                  match_interest xs y (* recursively looking for same interest x *)
+               end 
             
             val same_interests = match_interest interests interests_other
+
+            val _ = _setProcessDebuggingName "After matchInterest"
          in 
                if declassify_with_block(same_interests, authority, `{}`) then
                   (same_interests,

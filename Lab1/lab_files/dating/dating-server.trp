@@ -11,8 +11,10 @@ let
         val (lev1, _, _, _, _) = profile1
         val (lev2, _, _, _, _) = profile2
 
+        (* val _ = debugpc()*)
+
         val _ = printString "1"
-        val (preferenceUser1,maybeProfileUser1) = agent1 profile2
+        val (preferenceUser1, maybeProfileUser1) = agent1 profile2
         val _ = printString "2"
         val (preferenceUser2,maybeProfileUser2) = agent2 profile1
         
@@ -33,7 +35,7 @@ let
         in  
             (* Check if they like eachother and declassify result *)
             if declassify_with_block(preferenceUser1 andalso preferenceUser2, authority, `{}`)
-                then
+                then 
                     printString "Found match!";
                     printWithLabels maybeProfileUser1;
                     printWithLabels maybeProfileUser2;

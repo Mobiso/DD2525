@@ -23,7 +23,12 @@ let
             
             val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile
             val _ = attenuate(authority, lev)
-            val _ = attenuate(authority, lev_other)            
+            val _ = attenuate(authority, lev_other)    
+
+            (*val _ = _setProcessDebuggingName lev*)
+            
+            val _ = debugpc()
+
             fun match_interest [] y = false|
             match_interest (x::xs) y =
                if declassify_with_block(elem x y, authority, `{}`) then
@@ -33,6 +38,8 @@ let
             
             val same_interests = match_interest interests interests_other
            
+            val _ = _setProcessDebuggingName "After matchInterest"
+
          in 
                if declassify_with_block(same_interests, authority, `{}`) then
                   (same_interests,
