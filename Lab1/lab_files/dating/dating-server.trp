@@ -13,10 +13,10 @@ let
 
         (* val _ = debugpc()*)
 
-        val _ = printString "1"
-        val (preferenceUser1, maybeProfileUser1) = agent1 profile2
-        val _ = printString "2"
-        val (preferenceUser2,maybeProfileUser2) = agent2 profile1
+        val (preferenceUser1, maybeProfileUser1) = 
+            declassify_with_block(agent1 profile2, authority, `{}`) (*Is this label ok?*) (*Otherwise, the BL becomes client1 (label of maybeProfileUser1)*) 
+        val (preferenceUser2, maybeProfileUser2) = 
+            declassify_with_block(agent2 profile1, authority, `{}`) (*Is this label ok?*)
         
         
         (*val _ = print lev1
@@ -25,25 +25,22 @@ let
         val _ = printWithLabels maybeProfileUser2
         val _ = debugpc()
         *)
-        
-
-
-        (* add auths for declassify *)
-        val _ = attenuate (authority , lev1)
-        val _ = attenuate (authority , lev2)
 
         in  
             (* Check if they like eachother and declassify result *)
-            if declassify_with_block(preferenceUser1 andalso preferenceUser2, authority, `{}`)
-                then 
+            if declassify_with_block(preferenceUser1 andalso preferenceUser2, authority, `{}`) (*Is this ok?*)
+                then
                     printString "Found match!";
+                    printWithLabels preferenceUser1;
                     printWithLabels maybeProfileUser1;
+                    printWithLabels preferenceUser2;
                     printWithLabels maybeProfileUser2;
                     send(pid1, ("NEWMATCH",maybeProfileUser2));
                     printString "Complete 1";
                     send(pid2, ("NEWMATCH",maybeProfileUser1))
             else 
                 printString "No match" (* Debug kinda *)
+        
     end
 
     fun server userdb = (* TODO: finish this *)
@@ -67,7 +64,7 @@ let
                      while you develop your solution and work on a few 
                      custom clients;  *)
 
-            (*send (whereis ("@dispatcher", "dispatcher"), ("DISPATCH", thisNode));*)
+            (* send (whereis ("@dispatcher", "dispatcher"), ("DISPATCH", thisNode))*)
             ()
         end
 in main ()

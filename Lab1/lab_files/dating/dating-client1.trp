@@ -17,37 +17,45 @@ let
 
          fun agent other_profile =
          let
-
+            (* val _ = debugpc()*)
             
             (* Needed to do comparisons after being sent, agent cannot access client1 profile otherwise *)
             
             val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile
-            val _ = attenuate(authority, lev)
-            val _ = attenuate(authority, lev_other)    
 
-            (*val _ = _setProcessDebuggingName lev*)
-            
-            val _ = debugpc()
 
-            fun match_interest [] y = false|
-            match_interest (x::xs) y =
-               if declassify_with_block(elem x y, authority, `{}`) then
-                  true
+            val name = declassify(name, authority, lev_other)
+            val year = declassify(year, authority, lev_other)
+            val gender = declassify(gender, authority, lev_other)
+            val interests = declassifydeep(interests, authority, lev_other)
+
+
+            fun match_interest li1 y = 
+               let val _ = 1
+               in
+               if declassify_with_block(length li1 = 0, authority, lev_other) then
+                  false
                else
-                  match_interest xs y (* recursively looking for same interest x *) 
+                  let val x::xs = li1
+                  in
+                  if declassify_with_block(elem x y, authority, lev_other) then
+                     true
+                  else
+                     match_interest xs y
+                  end
+               end
+
             
-            val same_interests = match_interest interests interests_other
-           
-            val _ = _setProcessDebuggingName "After matchInterest"
+            val same_interests = match_interest interests interests_other (*Label lev_other*)
 
          in 
-               if declassify_with_block(same_interests, authority, `{}`) then
-                  (same_interests,
-                  (declassify(lev, authority,`{}`),
-                  declassify(name, authority,`{}`) raisedTo lev_other, 
-                  declassify(year, authority,`{}`) raisedTo lev_other,
-                  declassify(gender, authority,`{}`) raisedTo lev_other,
-                  declassify(interests, authority,`{}`) raisedTo lev_other))
+               if same_interests then
+                  (same_interests, 
+                  (lev, 
+                     name, 
+                     year, 
+                     gender,
+                     interests))
                else
                   (same_interests,())
          end
@@ -74,7 +82,7 @@ let
                      while you develop your solution and work on a few 
                      custom clients;  *)
                      
-            register ("client1", spawn (fn () => client `{client1}` "client1" 1856 true  ["Conquest"]), authority)
+            register ("Alice", spawn (fn () => client `{Alice}` "Alice" 1856 true  ["Conquest"]), authority)
         end
 in main ()
 end
