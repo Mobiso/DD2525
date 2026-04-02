@@ -23,8 +23,6 @@ let
             
             val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile
 
-            val _ = attenuate(authority, lev)
-
             val name = declassify(name, authority, lev_other)
             val year = declassify(year, authority, lev_other)
             val gender = declassify(gender, authority, lev_other)
@@ -83,7 +81,7 @@ let
                      while you develop your solution and work on a few 
                      custom clients;  *)
                      
-            register ("Bob", spawn (fn () => client `{Bob}` "Bob" 1855 false  ["War"]), authority)
+            register ("Bob", spawn (fn () => client `{Bob}` "Bob" 2000 false  ["War", "Conquest"]), authority)
         end
 in main ()
 end
