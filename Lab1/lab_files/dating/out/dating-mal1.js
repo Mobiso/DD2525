@@ -10,21 +10,21 @@ function Top (rt) {
     let _STACK = _T.callStack
     let _SP = _T._sp
     let _SP_OLD
-    _STACK[ _SP + 5]  = _T.checkDataBoundsEntry($env.__dataLevel)
-    _T.boundSlot =  _SP + 5
+    _STACK[ _SP + 4]  = _T.checkDataBoundsEntry($env.__dataLevel)
+    _T.boundSlot =  _SP + 4
     const gensym222$$$const = "pattern match failed"
-    const gensym220$$$const = rt.mkLabel("{mal}")
+    const gensym220$$$const = rt.mkLabel("{strings}")
+    const gensym219$$$const = "trings"
     const gensym217$$$const = 2001
     const gensym215$$$const = true
     const gensym210$$$const = "Burgers"
     const gensym211$$$const = "Soda"
     const gensym212$$$const = "War"
-    _STACK[ _SP + 4] =  $env
     const _$reg0_val = _T.r0_val;
     let _$reg0_lev = _T.pc;
     let _$reg0_tlev = _T.pc;
     let _pc_init = _T.pc;
-    if (! _STACK[ _SP + 5] ) {
+    if (! _STACK[ _SP + 4] ) {
       _$reg0_lev = _T.r0_lev;
       _$reg0_tlev = _T.r0_tlev;
       _pc_init = _T.pc;
@@ -42,7 +42,7 @@ function Top (rt) {
     const _vlev_1 = gensym221.lev;
     rt.rawAssertIsBoolean (_val_0);
     let _bl_4 = _T.pc;
-    if (! _STACK[ _SP + 5] ) {
+    if (! _STACK[ _SP + 4] ) {
       const _bl_3 = _T.bl;
       _bl_4 = rt.join (_bl_3,_vlev_1);;
     }
@@ -52,13 +52,13 @@ function Top (rt) {
       rt.rawAssertIsFunction (_val_5);
       let _pc_10 = _T.pc;
       let _bl_11 = _T.pc;
-      if (! _STACK[ _SP + 5] ) {
+      if (! _STACK[ _SP + 4] ) {
         _pc_10 = rt.join (_pc_init,_vlev_6);;
         _bl_11 = rt.join (_bl_4,_vlev_6);;
         _T.bl = rt.wrap_block_rhs (_bl_4);
       }
       _SP_OLD = _SP; 
-      _SP = _SP +  11 ;
+      _SP = _SP +  10 ;
       _STACK[_SP - 5] = _SP_OLD;
       _STACK[_SP - 4] = _T.pc;
       _STACK[_SP - 3] = this.$$$gensym208$$$kont3
@@ -74,7 +74,7 @@ function Top (rt) {
       _T.r0_tlev = _pc_init;
       return _val_5
     } else {
-      if (! _STACK[ _SP + 5] ) {
+      if (! _STACK[ _SP + 4] ) {
         const _bl_78 = rt.join (_bl_4,_pc_init);;
         const _bl_80 = rt.join (_bl_78,_pc_init);;
         _T.pc = _pc_init;
@@ -85,8 +85,8 @@ function Top (rt) {
   }
   this.gensym208.deps = [];
   this.gensym208.libdeps = [];
-  this.gensym208.serialized = "AAAAAAAAAAAJZ2Vuc3ltMjA4AAAAAAAAAAgkYXJnMTExMgAAAAAAAAAHAAAAAAAAAAlnZW5zeW0yMjIBAAAAAAAAABRwYXR0ZXJuIG1hdGNoIGZhaWxlZAAAAAAAAAAJZ2Vuc3ltMjIwAgAAAAAAAAAFe21hbH0AAAAAAAAACWdlbnN5bTIxNwAAAAAH0QAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAEMAAAAAAAAACWdlbnN5bTIxNQQBAAAAAAAAAAlnZW5zeW0yMTABAAAAAAAAAAdCdXJnZXJzAAAAAAAAAAlnZW5zeW0yMTEBAAAAAAAAAARTb2RhAAAAAAAAAAlnZW5zeW0yMTIBAAAAAAAAAANXYXIAAAAAAAAAAQAAAAAAAAAACWdlbnN5bTIyMQAFAAAAAAAAAAAIJGFyZzExMTIBAAAAAAAAAAlnZW5zeW0yMzMDAAAAAAAAAAAJZ2Vuc3ltMjIxAAAAAAAAAAAGAAAAAAAAAAlnZW5zeW0yMTgAAAAAAAAAAAABAAAAAAAAAAhjbGllbnQyNQAAAAAAAAAACWdlbnN5bTIyMAAAAAAAAAAABgAAAAAAAAAJZ2Vuc3ltMjE2AAAAAAAAAAAAAAAAAAAAAAAJZ2Vuc3ltMjE4AQAAAAAAAAAJZ2Vuc3ltMjA0AAAAAAAAAAAGAAAAAAAAAAlnZW5zeW0yMTQAAAAAAAAAAAAAAAAAAAAAAAlnZW5zeW0yMTYAAAAAAAAAAAlnZW5zeW0yMTcAAAAAAAAAAAYAAAAAAAAACWdlbnN5bTIwOQAAAAAAAAAAAAAAAAAAAAAACWdlbnN5bTIxNAAAAAAAAAAACWdlbnN5bTIxNQAAAAAAAAABAAAAAAAAAAAJZ2Vuc3ltMjEzBgAAAAAAAAADAAAAAAAAAAAJZ2Vuc3ltMjEwAAAAAAAAAAAJZ2Vuc3ltMjExAAAAAAAAAAAJZ2Vuc3ltMjEyAAAAAAAAAAAACWdlbnN5bTIwOQAAAAAAAAAACWdlbnN5bTIxMwAAAAAAAAAACWdlbnN5bTIyMgI=";
-  this.gensym208.framesize = 5;
+  this.gensym208.serialized = "AAAAAAAAAAAJZ2Vuc3ltMjA4AAAAAAAAAAgkYXJnMTExMgAAAAAAAAAIAAAAAAAAAAlnZW5zeW0yMjIBAAAAAAAAABRwYXR0ZXJuIG1hdGNoIGZhaWxlZAAAAAAAAAAJZ2Vuc3ltMjIwAgAAAAAAAAAJe3N0cmluZ3N9AAAAAAAAAAlnZW5zeW0yMTkBAAAAAAAAAAZ0cmluZ3MAAAAAAAAACWdlbnN5bTIxNwAAAAAH0QAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAE4AAAAAAAAACWdlbnN5bTIxNQQBAAAAAAAAAAlnZW5zeW0yMTABAAAAAAAAAAdCdXJnZXJzAAAAAAAAAAlnZW5zeW0yMTEBAAAAAAAAAARTb2RhAAAAAAAAAAlnZW5zeW0yMTIBAAAAAAAAAANXYXIAAAAAAAAAAQAAAAAAAAAACWdlbnN5bTIyMQAFAAAAAAAAAAAIJGFyZzExMTIBAAAAAAAAAAlnZW5zeW0yMzMDAAAAAAAAAAAJZ2Vuc3ltMjIxAAAAAAAAAAAGAAAAAAAAAAlnZW5zeW0yMTgAAAAAAAAAAAABAAAAAAAAAAhjbGllbnQyNQAAAAAAAAAACWdlbnN5bTIyMAAAAAAAAAAABgAAAAAAAAAJZ2Vuc3ltMjE2AAAAAAAAAAAAAAAAAAAAAAAJZ2Vuc3ltMjE4AAAAAAAAAAAJZ2Vuc3ltMjE5AAAAAAAAAAAGAAAAAAAAAAlnZW5zeW0yMTQAAAAAAAAAAAAAAAAAAAAAAAlnZW5zeW0yMTYAAAAAAAAAAAlnZW5zeW0yMTcAAAAAAAAAAAYAAAAAAAAACWdlbnN5bTIwOQAAAAAAAAAAAAAAAAAAAAAACWdlbnN5bTIxNAAAAAAAAAAACWdlbnN5bTIxNQAAAAAAAAABAAAAAAAAAAAJZ2Vuc3ltMjEzBgAAAAAAAAADAAAAAAAAAAAJZ2Vuc3ltMjEwAAAAAAAAAAAJZ2Vuc3ltMjExAAAAAAAAAAAJZ2Vuc3ltMjEyAAAAAAAAAAAACWdlbnN5bTIwOQAAAAAAAAAACWdlbnN5bTIxMwAAAAAAAAAACWdlbnN5bTIyMgI=";
+  this.gensym208.framesize = 4;
   this.main104 = ($env) => {
     let _T = rt.runtime.$t
     let _STACK = _T.callStack
@@ -97,7 +97,7 @@ function Top (rt) {
     const gensym236$$$const = "pattern match failure in function main"
     const gensym233$$$const = rt.__unitbase
     const gensym225$$$const = "Running client node with identifier: "
-    const gensym204$$$const = "Mal"
+    const gensym204$$$const = "Strings"
     _STACK[ _SP + 6] =  $env
     const _$reg0_val = _T.r0_val;
     let _$reg0_lev = _T.pc;
@@ -171,7 +171,7 @@ function Top (rt) {
   }
   this.main104.deps = ['gensym208'];
   this.main104.libdeps = [];
-  this.main104.serialized = "AAAAAAAAAAAHbWFpbjEwNAAAAAAAAAAMbWFpbl9hcmcxMTA1AAAAAAAAAAQAAAAAAAAACWdlbnN5bTIzNgEAAAAAAAAAJnBhdHRlcm4gbWF0Y2ggZmFpbHVyZSBpbiBmdW5jdGlvbiBtYWluAAAAAAAAAAlnZW5zeW0yMzMDAAAAAAAAAAlnZW5zeW0yMjUBAAAAAAAAACVSdW5uaW5nIGNsaWVudCBub2RlIHdpdGggaWRlbnRpZmllcjogAAAAAAAAAAlnZW5zeW0yMDQBAAAAAAAAAANNYWwAAAAAAAAAAQAAAAAAAAAACWdlbnN5bTIzMAAFAAAAAAAAAAAMbWFpbl9hcmcxMTA1AAAAAAAAAAAJZ2Vuc3ltMjMzAwAAAAAAAAAACWdlbnN5bTIzMAAAAAAAAAAABgAAAAAAAAANJGRlY2x0ZW1wJDEwOAAAAAAAAAACAAAAAAAAAAAJZ2Vuc3ltMjI2CQAAAAAAAAAEbm9kZQAAAAAAAAAACWdlbnN5bTIyOAkAAAAAAAAABHNlbGYGAAAAAAAAAAlnZW5zeW0yMjcAAAAAAAAAAAAAAAAAAAAAAAlnZW5zeW0yMjgAAAAAAAAAAAlnZW5zeW0yMzMAAAAAAAAAAAAAAAAAAAAAAAlnZW5zeW0yMjYAAAAAAAAAAAlnZW5zeW0yMjcAAAAAAAAAAAYAAAAAAAAADSRkZWNsdGVtcCQxMTAAAAAAAAAAAQAAAAAAAAAACWdlbnN5bTIyNAAQAAAAAAAAAAAJZ2Vuc3ltMjI1AAAAAAAAAAANJGRlY2x0ZW1wJDEwOAABAAAAAAAAAAxwcmludFN0cmluZzQAAAAAAAAAAAlnZW5zeW0yMjQAAAAAAAAAAwAAAAAAAAAACWdlbnN5bTIwMwkAAAAAAAAACHJlZ2lzdGVyAAAAAAAAAAAJZ2Vuc3ltMjA3CQAAAAAAAAAFc3Bhd24BAAAAAAAAAAMAAAAAAAAACWdlbnN5bTIzMwAAAAAAAAAACWdlbnN5bTIzMwAAAAAAAAAJZ2Vuc3ltMjA0AAAAAAAAAAAJZ2Vuc3ltMjA0AAAAAAAAAAhjbGllbnQyNQEAAAAAAAAACGNsaWVudDI1AAAAAAAAAAEAAAAAAAAACWdlbnN5bTIwOAAAAAAAAAAJZ2Vuc3ltMjA4BgAAAAAAAAAJZ2Vuc3ltMjA1AAAAAAAAAAAAAAAAAAAAAAAJZ2Vuc3ltMjA3AAAAAAAAAAAJZ2Vuc3ltMjA4AAAAAAAAAAEAAAAAAAAAAAlnZW5zeW0yMDYCAAAAAAAAAAMAAAAAAAAAAAlnZW5zeW0yMDQAAAAAAAAAAAlnZW5zeW0yMDUBAAAAAAAAAAlnZW5zeW0yNDgAAAAAAAAAAAAJZ2Vuc3ltMjAzAAAAAAAAAAAJZ2Vuc3ltMjA2AAAAAAAAAAAJZ2Vuc3ltMjM2AAAAAAAAAAAAAAAAAAAAAEUAAAAAAAAACw==";
+  this.main104.serialized = "AAAAAAAAAAAHbWFpbjEwNAAAAAAAAAAMbWFpbl9hcmcxMTA1AAAAAAAAAAQAAAAAAAAACWdlbnN5bTIzNgEAAAAAAAAAJnBhdHRlcm4gbWF0Y2ggZmFpbHVyZSBpbiBmdW5jdGlvbiBtYWluAAAAAAAAAAlnZW5zeW0yMzMDAAAAAAAAAAlnZW5zeW0yMjUBAAAAAAAAACVSdW5uaW5nIGNsaWVudCBub2RlIHdpdGggaWRlbnRpZmllcjogAAAAAAAAAAlnZW5zeW0yMDQBAAAAAAAAAAdTdHJpbmdzAAAAAAAAAAEAAAAAAAAAAAlnZW5zeW0yMzAABQAAAAAAAAAADG1haW5fYXJnMTEwNQAAAAAAAAAACWdlbnN5bTIzMwMAAAAAAAAAAAlnZW5zeW0yMzAAAAAAAAAAAAYAAAAAAAAADSRkZWNsdGVtcCQxMDgAAAAAAAAAAgAAAAAAAAAACWdlbnN5bTIyNgkAAAAAAAAABG5vZGUAAAAAAAAAAAlnZW5zeW0yMjgJAAAAAAAAAARzZWxmBgAAAAAAAAAJZ2Vuc3ltMjI3AAAAAAAAAAAAAAAAAAAAAAAJZ2Vuc3ltMjI4AAAAAAAAAAAJZ2Vuc3ltMjMzAAAAAAAAAAAAAAAAAAAAAAAJZ2Vuc3ltMjI2AAAAAAAAAAAJZ2Vuc3ltMjI3AAAAAAAAAAAGAAAAAAAAAA0kZGVjbHRlbXAkMTEwAAAAAAAAAAEAAAAAAAAAAAlnZW5zeW0yMjQAEAAAAAAAAAAACWdlbnN5bTIyNQAAAAAAAAAADSRkZWNsdGVtcCQxMDgAAQAAAAAAAAAMcHJpbnRTdHJpbmc0AAAAAAAAAAAJZ2Vuc3ltMjI0AAAAAAAAAAMAAAAAAAAAAAlnZW5zeW0yMDMJAAAAAAAAAAhyZWdpc3RlcgAAAAAAAAAACWdlbnN5bTIwNwkAAAAAAAAABXNwYXduAQAAAAAAAAACAAAAAAAAAAlnZW5zeW0yMzMAAAAAAAAAAAlnZW5zeW0yMzMAAAAAAAAACGNsaWVudDI1AQAAAAAAAAAIY2xpZW50MjUAAAAAAAAAAQAAAAAAAAAJZ2Vuc3ltMjA4AAAAAAAAAAlnZW5zeW0yMDgGAAAAAAAAAAlnZW5zeW0yMDUAAAAAAAAAAAAAAAAAAAAAAAlnZW5zeW0yMDcAAAAAAAAAAAlnZW5zeW0yMDgAAAAAAAAAAQAAAAAAAAAACWdlbnN5bTIwNgIAAAAAAAAAAwAAAAAAAAAACWdlbnN5bTIwNAAAAAAAAAAACWdlbnN5bTIwNQEAAAAAAAAACWdlbnN5bTI0OAAAAAAAAAAAAAlnZW5zeW0yMDMAAAAAAAAAAAlnZW5zeW0yMDYAAAAAAAAAAAlnZW5zeW0yMzYAAAAAAAAAAAAAAAAAAAAARQAAAAAAAAAL";
   this.main104.framesize = 7;
   this.gensym118 = ($env) => {
     let _T = rt.runtime.$t
@@ -1025,10 +1025,11 @@ function Top (rt) {
     let _STACK = _T.callStack
     let _SP = _T._sp
     let _SP_OLD
-    _STACK[ _SP + 5] = _T.checkDataBounds( _STACK[ _SP + 5] )
-    _T.boundSlot = _SP + 5
+    _STACK[ _SP + 4] = _T.checkDataBounds( _STACK[ _SP + 4] )
+    _T.boundSlot = _SP + 4
     const gensym222$$$const = "pattern match failed"
-    const gensym220$$$const = rt.mkLabel("{mal}")
+    const gensym220$$$const = rt.mkLabel("{strings}")
+    const gensym219$$$const = "trings"
     const gensym217$$$const = 2001
     const gensym215$$$const = true
     const gensym210$$$const = "Burgers"
@@ -1041,7 +1042,7 @@ function Top (rt) {
     const _raw_46 = (rt.mkList([gensym210, gensym211, gensym212]));
     rt.rawAssertIsFunction (_r0_val_60);
     let _pc_45 = _T.pc;
-    if (! _STACK[ _SP + 5] ) {
+    if (! _STACK[ _SP + 4] ) {
       const _r0_lev_61 = _T.r0_lev;
       _pc_45 = _T.pc;
       const _bl_54 = _T.bl;
@@ -1061,10 +1062,11 @@ function Top (rt) {
     let _STACK = _T.callStack
     let _SP = _T._sp
     let _SP_OLD
-    _STACK[ _SP + 5] = _T.checkDataBounds( _STACK[ _SP + 5] )
-    _T.boundSlot = _SP + 5
+    _STACK[ _SP + 4] = _T.checkDataBounds( _STACK[ _SP + 4] )
+    _T.boundSlot = _SP + 4
     const gensym222$$$const = "pattern match failed"
-    const gensym220$$$const = rt.mkLabel("{mal}")
+    const gensym220$$$const = rt.mkLabel("{strings}")
+    const gensym219$$$const = "trings"
     const gensym217$$$const = 2001
     const gensym215$$$const = true
     const gensym210$$$const = "Burgers"
@@ -1075,7 +1077,7 @@ function Top (rt) {
     rt.rawAssertIsFunction (_r0_val_63);
     let _pc_40 = _T.pc;
     let _bl_41 = _T.pc;
-    if (! _STACK[ _SP + 5] ) {
+    if (! _STACK[ _SP + 4] ) {
       const _r0_lev_64 = _T.r0_lev;
       const _pc_38 = _T.pc;
       const _bl_39 = _T.bl;
@@ -1083,7 +1085,7 @@ function Top (rt) {
       _bl_41 = rt.join (_bl_39,_r0_lev_64);;
     }
     _SP_OLD = _SP; 
-    _SP = _SP +  11 ;
+    _SP = _SP +  10 ;
     _STACK[_SP - 5] = _SP_OLD;
     _STACK[_SP - 4] = _T.pc;
     _STACK[_SP - 3] = this.$$$gensym208$$$kont0
@@ -1105,10 +1107,11 @@ function Top (rt) {
     let _STACK = _T.callStack
     let _SP = _T._sp
     let _SP_OLD
-    _STACK[ _SP + 5] = _T.checkDataBounds( _STACK[ _SP + 5] )
-    _T.boundSlot = _SP + 5
+    _STACK[ _SP + 4] = _T.checkDataBounds( _STACK[ _SP + 4] )
+    _T.boundSlot = _SP + 4
     const gensym222$$$const = "pattern match failed"
-    const gensym220$$$const = rt.mkLabel("{mal}")
+    const gensym220$$$const = rt.mkLabel("{strings}")
+    const gensym219$$$const = "trings"
     const gensym217$$$const = 2001
     const gensym215$$$const = true
     const gensym210$$$const = "Burgers"
@@ -1119,7 +1122,7 @@ function Top (rt) {
     rt.rawAssertIsFunction (_r0_val_66);
     let _pc_30 = _T.pc;
     let _bl_31 = _T.pc;
-    if (! _STACK[ _SP + 5] ) {
+    if (! _STACK[ _SP + 4] ) {
       const _r0_lev_67 = _T.r0_lev;
       const _pc_28 = _T.pc;
       const _bl_29 = _T.bl;
@@ -1127,7 +1130,7 @@ function Top (rt) {
       _bl_31 = rt.join (_bl_29,_r0_lev_67);;
     }
     _SP_OLD = _SP; 
-    _SP = _SP +  11 ;
+    _SP = _SP +  10 ;
     _STACK[_SP - 5] = _SP_OLD;
     _STACK[_SP - 4] = _T.pc;
     _STACK[_SP - 3] = this.$$$gensym208$$$kont1
@@ -1149,24 +1152,22 @@ function Top (rt) {
     let _STACK = _T.callStack
     let _SP = _T._sp
     let _SP_OLD
-    _STACK[ _SP + 5] = _T.checkDataBounds( _STACK[ _SP + 5] )
-    _T.boundSlot = _SP + 5
+    _STACK[ _SP + 4] = _T.checkDataBounds( _STACK[ _SP + 4] )
+    _T.boundSlot = _SP + 4
     const gensym222$$$const = "pattern match failed"
-    const gensym220$$$const = rt.mkLabel("{mal}")
+    const gensym220$$$const = rt.mkLabel("{strings}")
+    const gensym219$$$const = "trings"
     const gensym217$$$const = 2001
     const gensym215$$$const = true
     const gensym210$$$const = "Burgers"
     const gensym211$$$const = "Soda"
     const gensym212$$$const = "War"
-    const $env = _STACK[ _SP + 4]
+    const _pc_init = _STACK[ _SP + 0]
     const _r0_val_69 = _T.r0_val;
-    const _val_22 = $env.gensym204.val;
-    const _vlev_23 = $env.gensym204.lev;
-    const _tlev_24 = $env.gensym204.tlev;
     rt.rawAssertIsFunction (_r0_val_69);
     let _pc_20 = _T.pc;
     let _bl_21 = _T.pc;
-    if (! _STACK[ _SP + 5] ) {
+    if (! _STACK[ _SP + 4] ) {
       const _r0_lev_70 = _T.r0_lev;
       const _pc_18 = _T.pc;
       const _bl_19 = _T.bl;
@@ -1174,7 +1175,7 @@ function Top (rt) {
       _bl_21 = rt.join (_bl_19,_r0_lev_70);;
     }
     _SP_OLD = _SP; 
-    _SP = _SP +  11 ;
+    _SP = _SP +  10 ;
     _STACK[_SP - 5] = _SP_OLD;
     _STACK[_SP - 4] = _T.pc;
     _STACK[_SP - 3] = this.$$$gensym208$$$kont2
@@ -1185,9 +1186,9 @@ function Top (rt) {
       _T.pc = _pc_20;
       _T.bl = rt.wrap_block_rhs (_bl_21);
     }
-    _T.r0_val = _val_22;
-    _T.r0_lev = _vlev_23;
-    _T.r0_tlev = _tlev_24;
+    _T.r0_val = gensym219$$$const;
+    _T.r0_lev = _pc_init;
+    _T.r0_tlev = _pc_init;
     return _r0_val_69
   }
   this.$$$gensym208$$$kont3.debugname = "$$$gensym208$$$kont3"
@@ -1201,7 +1202,7 @@ function Top (rt) {
     const gensym236$$$const = "pattern match failure in function main"
     const gensym233$$$const = rt.__unitbase
     const gensym225$$$const = "Running client node with identifier: "
-    const gensym204$$$const = "Mal"
+    const gensym204$$$const = "Strings"
     const _pc_init = _STACK[ _SP + -12]
     const _raw_7 = _STACK[ _SP + -11]
     const _r0_val_37 = _T.r0_val;
@@ -1234,7 +1235,7 @@ function Top (rt) {
     const gensym236$$$const = "pattern match failure in function main"
     const gensym233$$$const = rt.__unitbase
     const gensym225$$$const = "Running client node with identifier: "
-    const gensym204$$$const = "Mal"
+    const gensym204$$$const = "Strings"
     const _pc_68 = _STACK[ _SP + 0]
     const _raw_70 = _STACK[ _SP + 3]
     const gensym204 = _STACK[ _SP + 4]
@@ -1274,8 +1275,7 @@ function Top (rt) {
     const gensym236$$$const = "pattern match failure in function main"
     const gensym233$$$const = rt.__unitbase
     const gensym225$$$const = "Running client node with identifier: "
-    const gensym204$$$const = "Mal"
-    const gensym204 = _STACK[ _SP + 4]
+    const gensym204$$$const = "Strings"
     const gensym233 = _STACK[ _SP + 5]
     const $env = _STACK[ _SP + 6]
     const lval69 = rt. register;
@@ -1285,9 +1285,8 @@ function Top (rt) {
     const _raw_76 = lval75.val;
     const $$$env5 = new rt.Env();
     $$$env5.gensym233 = gensym233;
-    $$$env5.gensym204 = gensym204;
     $$$env5.client25 = $env.client25;
-    $$$env5.__dataLevel =  rt.join (gensym233.dataLevel,gensym204.dataLevel,$env.client25.dataLevel);
+    $$$env5.__dataLevel =  rt.join (gensym233.dataLevel,$env.client25.dataLevel);
     const gensym208 = rt.mkVal(rt.RawClosure($$$env5, this, this.gensym208))
     $$$env5.gensym208 = gensym208;
     $$$env5.gensym208.selfpointer = true;
@@ -1331,7 +1330,7 @@ function Top (rt) {
     const gensym236$$$const = "pattern match failure in function main"
     const gensym233$$$const = rt.__unitbase
     const gensym225$$$const = "Running client node with identifier: "
-    const gensym204$$$const = "Mal"
+    const gensym204$$$const = "Strings"
     const _pc_init = _STACK[ _SP + 1]
     const $env = _STACK[ _SP + 6]
     const _r0_val_111 = _T.r0_val;

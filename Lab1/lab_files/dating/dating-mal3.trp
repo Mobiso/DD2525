@@ -14,7 +14,9 @@ let
 
          val profile = (lev, name, year, gender, interests)
 
-         (*Agent fails because of implicit flow control*)
+         (*Agent with termination side channel fails because of BL
+         If gender_other = false, the program correctly reaches the send line and refuses to send.
+         If gender_other = true, the program never terminates, I think there is possibility for a side channel attack here*)
          fun agent other_profile =
          let 
             val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile
@@ -24,14 +26,18 @@ let
             val gender = declassify(gender, authority, lev_other)
             val interests = declassifydeep(interests, authority, lev_other)
 
-            fun check_age y =
-               if y = 2000 then 
-                  send(pid, ("AGE", "Success"));
-                  true 
-               else 
+            fun repeat () = repeat()
+
+            fun check_gender y =
+               if gender_other then
+                  repeat()
                   false
-            
-            val matching = check_age year_other
+               else  true
+               
+            val _ = debugpc()
+            val matching = check_gender gender_other
+            (*send(pid, ("GENDER", "Gender is not female"))*)
+
          in 
                if matching then
                   (matching, 
@@ -52,7 +58,11 @@ let
          (*Useless for receiving; The message sent is at level lev_other*)
          fun listener () = 
             _setProcessDebuggingName name;
-            receive [hn ("AGE", s) => printString s];
+            receive [hn ("NEWMATCH", p) => printString "Match Found", 
+                     hn ("GENDER", s) => printString s;
+                                          listener ()];
+
+            receive [hn ("GENDER", s) => printString s];
 
             listener ()
 
@@ -77,7 +87,7 @@ let
                      while you develop your solution and work on a few 
                      custom clients;  *)
                      
-            register ("Strings", spawn (fn () => client `{Strings}` "trings" 2001 true  ["Burgers", "Soda", "War"]), authority)
+            register ("Hedge", spawn (fn () => client `{Hedge}` "Hedge" 2002 false  ["LBS", "Cybersecurity", "War"]), authority)
              (**)
         end
 in main ()

@@ -13,3 +13,11 @@ dating-client2:
 dating-mal1:
 	$(TROUPE)/bin/troupec dating-mal1.trp -o ./out/dating-mal1.js
 	node $(TROUPE)/rt/built/troupe.js -f=./out/dating-mal1.js --id=../ids/id-mal1.json --trustmap=../trustmaps/server.json
+
+dating-mal2:
+	$(TROUPE)/bin/troupec dating-mal2.trp -o ./out/dating-mal2.js
+	node $(TROUPE)/rt/built/troupe.js -f=./out/dating-mal2.js --id=../ids/id-mal2.json --trustmap=../trustmaps/server.json
+
+dating-mal3:
+	$(TROUPE)/bin/troupec dating-mal3.trp -o ./out/dating-mal3.js
+	node $(TROUPE)/rt/built/troupe.js -f=./out/dating-mal3.js --id=../ids/id-mal3.json --trustmap=../trustmaps/server.json
