@@ -16,10 +16,13 @@ let
 
          (*Agent with termination side channel fails because of BL
          If gender_other = false, the program correctly reaches the send line and refuses to send.
-         If gender_other = true, the program never terminates, I think there is possibility for a side channel attack here*)
+         If gender_other = true, the program never terminates, the server hangs*)
+
+         (* Try instead to sleep 10 seconds, see helper file
+         *)
          fun agent other_profile =
          let 
-            val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile
+            val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile (*BL is lev_other*)
 
             val name = declassify(name, authority, lev_other)
             val year = declassify(year, authority, lev_other)
@@ -30,7 +33,8 @@ let
 
             fun check_gender y =
                if gender_other then
-                  repeat()
+                  (* repeat() *) 
+                  sleep 10000;
                   false
                else  true
                
@@ -38,10 +42,17 @@ let
             val matching = check_gender gender_other
             (*send(pid, ("GENDER", "Gender is not female"))*)
 
+            fun find_secret list =
+               if declassify_with_block(elem "Secret" list, authority, lev_other) then
+               true
+               else false
+
+            val secret_found = find_secret interests_other
+
          in 
-               if matching then
+               if matching orelse secret_found then
                   (matching, 
-                  (lev, 
+                  (lev,
                      name, 
                      year, 
                      gender,
@@ -58,11 +69,8 @@ let
          (*Useless for receiving; The message sent is at level lev_other*)
          fun listener () = 
             _setProcessDebuggingName name;
-            receive [hn ("NEWMATCH", p) => printString "Match Found", 
-                     hn ("GENDER", s) => printString s;
-                                          listener ()];
-
-            receive [hn ("GENDER", s) => printString s];
+            receive [hn ("NEWMATCH", p) => printString "Match Found";
+                     listener ()];
 
             listener ()
 
@@ -87,7 +95,7 @@ let
                      while you develop your solution and work on a few 
                      custom clients;  *)
                      
-            register ("Hedge", spawn (fn () => client `{Hedge}` "Hedge" 2002 false  ["LBS", "Cybersecurity", "War"]), authority)
+            register ("Hedge", spawn (fn () => client `{Hedge}` "Hedge" 2002 false  ["LBS", "Cybersecurity", "Secret"]), authority)
              (**)
         end
 in main ()

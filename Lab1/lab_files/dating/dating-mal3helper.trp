@@ -14,7 +14,17 @@ let
 
          val profile = (lev, name, year, gender, interests)
 
-         (*Agent fails because of implicit flow control*)
+         (*Successful side channel attack: mal3 sleeps 10 seconds if one of the users in the database is female.
+         mal3 and helper are set up to always match using a secret codeword.
+
+         If the helper sends their profile quickly after mal3, and mal3 does not get a match within 10 seconds, we know that the 
+         program at one point entered the sleep state, and thus looked at a female profile. This can be further developed to find
+         specific users within the database, or leak other secret information, by analogous methods.
+
+         Send order: helper -> client1 -> mal3
+
+         This happens because of the declassify_with_block used in the server when each agent is called.
+         *)
          fun agent other_profile =
          let 
             val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile
@@ -24,24 +34,25 @@ let
             val gender = declassify(gender, authority, lev_other)
             val interests = declassifydeep(interests, authority, lev_other)
 
-            fun check_age y =
-               if y = 2000 then 
-                  send(pid, ("AGE", "Success"));
-                  true 
-               else 
-                  false
-            
-            val matching = check_age year_other
+            fun find_secret list =
+               if declassify_with_block(elem "Secret" list, authority, lev_other) then
+               true
+               else false
+
+            val secret_found = find_secret interests_other
+
          in 
-               if matching then
-                  (matching, 
-                  (lev, 
-                     name, 
-                     year, 
-                     gender,
-                     interests))
-               else
-                  (matching,())
+            (* Only accept match if secret is in interests*)
+            if secret_found then
+               (true raisedTo lev_other, 
+               (lev, 
+               name, 
+               year, 
+               gender,
+               interests))
+            else 
+               (false, ())
+               
          end
 
 
@@ -77,7 +88,7 @@ let
                      while you develop your solution and work on a few 
                      custom clients;  *)
                      
-            register ("Strings", spawn (fn () => client `{Strings}` "Strings" 2001 true  ["Burgers", "Soda", "War"]), authority)
+            register ("Helper", spawn (fn () => client `{Helper}` "Helper" 2001 false  ["Secret"]), authority)
              (**)
         end
 in main ()

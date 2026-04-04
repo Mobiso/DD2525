@@ -21,3 +21,8 @@ dating-mal2:
 dating-mal3:
 	$(TROUPE)/bin/troupec dating-mal3.trp -o ./out/dating-mal3.js
 	node $(TROUPE)/rt/built/troupe.js -f=./out/dating-mal3.js --id=../ids/id-mal3.json --trustmap=../trustmaps/server.json
+
+dating-mal3helper:
+	$(TROUPE)/bin/troupec dating-mal3helper.trp -o ./out/dating-mal3helper.js
+	node $(TROUPE)/rt/built/troupe.js -f=./out/dating-mal3helper.js --id=../ids/id-mal3helper.json --trustmap=../trustmaps/server.json
+
