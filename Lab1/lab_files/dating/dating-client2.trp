@@ -45,7 +45,7 @@ let
                end
 
             
-            val same_interests = match_interest interests interests_other (*Label lev_other*)
+            val same_interests = match_interest interests interests_other 
 
          in 
                if same_interests then
@@ -77,10 +77,7 @@ let
             val _ = printString ("Running client node with identifier: " ^ thisNode)
    
         
-        in  (* TODO: Feel free to comment out the next line
-                     while you develop your solution and work on a few 
-                     custom clients;  *)
-                     
+        in                       
             register ("Bob", spawn (fn () => client `{Bob}` "Bob" 2000 false  ["War", "Conquest"]), authority)
         end
 in main ()

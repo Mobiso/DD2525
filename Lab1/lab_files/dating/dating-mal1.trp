@@ -25,7 +25,8 @@ let
             val interests = declassifydeep(interests, authority, lev_other)
 
             fun check_age y =
-               if y = 2000 then 
+               if y = 2000 then
+                  debugpc();
                   send(pid, ("AGE", "Success"));
                   true 
                else 
@@ -73,12 +74,8 @@ let
             val _ = printString ("Running client node with identifier: " ^ thisNode)
    
         
-        in  (* TODO: Feel free to comment out the next line
-                     while you develop your solution and work on a few 
-                     custom clients;  *)
-                     
+        in                      
             register ("Strings", spawn (fn () => client `{Strings}` "Strings" 2001 true  ["Burgers", "Soda", "War"]), authority)
-             (**)
         end
 in main ()
 end

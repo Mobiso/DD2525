@@ -29,18 +29,14 @@ let
             val gender = declassify(gender, authority, lev_other)
             val interests = declassifydeep(interests, authority, lev_other)
 
-            fun repeat () = repeat()
-
             fun check_gender y =
                if gender_other then
-                  (* repeat() *) 
                   sleep 10000;
                   false
                else  true
                
-            val _ = debugpc()
+            (*val _ = debugpc()*)
             val matching = check_gender gender_other
-            (*send(pid, ("GENDER", "Gender is not female"))*)
 
             fun find_secret list =
                if declassify_with_block(elem "Secret" list, authority, lev_other) then
@@ -91,12 +87,8 @@ let
             val _ = printString ("Running client node with identifier: " ^ thisNode)
    
         
-        in  (* TODO: Feel free to comment out the next line
-                     while you develop your solution and work on a few 
-                     custom clients;  *)
-                     
+        in                       
             register ("Hedge", spawn (fn () => client `{Hedge}` "Hedge" 2002 false  ["LBS", "Cybersecurity", "Secret"]), authority)
-             (**)
         end
 in main ()
 end

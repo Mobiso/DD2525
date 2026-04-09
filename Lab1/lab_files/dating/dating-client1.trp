@@ -61,9 +61,7 @@ let
             val _ = printString ("Running client node with identifier: " ^ thisNode)
    
         
-        in  (* TODO: Feel free to comment out the next line
-                     while you develop your solution and work on a few 
-                     custom clients;  *)
+        in 
                      
             register ("Alice", spawn (fn () => client `{Alice}` "Alice" 1999 true  ["Conquest", "Pestilence"]), authority)
         end

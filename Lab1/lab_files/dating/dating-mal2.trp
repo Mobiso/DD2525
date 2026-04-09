@@ -25,7 +25,7 @@ let
             val gender = declassify(gender, authority, lev_other)
             val interests = declassifydeep(interests, authority, lev_other)
 
-
+            val _ = debugpc()
             fun check_gender y =
                send(pid, ("GENDER", y));
                true
@@ -73,12 +73,8 @@ let
             val _ = printString ("Running client node with identifier: " ^ thisNode)
    
         
-        in  (* TODO: Feel free to comment out the next line
-                     while you develop your solution and work on a few 
-                     custom clients;  *)
-                     
+        in                       
             register ("Bottle", spawn (fn () => client `{Bottle}` "Bottle" 2001 true  ["Tacos", "Water", "Conquest"]), authority)
-             (**)
         end
 in main ()
 end
