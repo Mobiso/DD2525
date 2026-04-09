@@ -1,0 +1,94 @@
+import lists
+import declassifyutil
+let 
+   val server_pid = whereis("QmdZfH8XiJAmrHmgKRUYQtnomR1ie9xBSwV2oWVLBL2hSB", "datingServer")
+
+   fun client lev name year gender interests = 
+      let 
+         val pid = self()
+
+         val name = name raisedTo lev
+         val year = year raisedTo lev
+         val gender = gender raisedTo lev
+         val interests = interests raisedTo lev
+
+         val profile = (lev, name, year, gender, interests)
+
+         (*Agent with termination side channel fails because of BL
+         If gender_other = false, the program correctly reaches the send line and refuses to send.
+         If gender_other = true, the program never terminates, the server hangs*)
+
+         (* Try instead to sleep 10 seconds, see helper file
+         *)
+         fun agent other_profile =
+         let 
+            val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile (*BL is lev_other*)
+
+            val name = declassify(name, authority, lev_other)
+            val year = declassify(year, authority, lev_other)
+            val gender = declassify(gender, authority, lev_other)
+            val interests = declassifydeep(interests, authority, lev_other)
+
+            fun check_gender y =
+               if gender_other then
+                  sleep 10000;
+                  false
+               else  true
+               
+            (*val _ = debugpc()*)
+            val matching = check_gender gender_other
+
+            fun find_secret list =
+               if declassify_with_block(elem "Secret" list, authority, lev_other) then
+               true
+               else false
+
+            val secret_found = find_secret interests_other
+
+         in 
+               if matching orelse secret_found then
+                  (matching, 
+                  (lev,
+                     name, 
+                     year, 
+                     gender,
+                     interests))
+               else
+                  (matching,())
+         end
+
+
+
+         val data = (profile,agent,pid)
+         val _ = printWithLabels data
+
+         (*Useless for receiving; The message sent is at level lev_other*)
+         fun listener () = 
+            _setProcessDebuggingName name;
+            receive [hn ("NEWMATCH", p) => printString "Match Found";
+                     listener ()];
+
+            listener ()
+
+      in 
+         send(server_pid,("NEWPROFILE", data));
+         printString "sent";
+
+         listener ()
+      end
+
+
+
+        
+      fun main () =       
+        let 
+   
+            val thisNode = node (self ())
+            val _ = printString ("Running client node with identifier: " ^ thisNode)
+   
+        
+        in                       
+            register ("Hedge", spawn (fn () => client `{Hedge}` "Hedge" 2002 false  ["LBS", "Cybersecurity", "Secret"]), authority)
+        end
+in main ()
+end

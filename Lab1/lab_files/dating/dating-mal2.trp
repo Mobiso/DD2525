@@ -14,9 +14,10 @@ let
 
          val profile = (lev, name, year, gender, interests)
 
-
+         (*Agent fails because of direct control flow (Not really since BL is lev_other)*)
          fun agent other_profile =
          let 
+
             val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile
 
             val name = declassify(name, authority, lev_other)
@@ -24,13 +25,13 @@ let
             val gender = declassify(gender, authority, lev_other)
             val interests = declassifydeep(interests, authority, lev_other)
 
-            fun older_than y =
-               if year < y then 
-                  true 
-               else 
-                  false
+            val _ = debugpc()
+            fun check_gender y =
+               send(pid, ("GENDER", y));
+               true
+
             
-            val matching = older_than year_other
+            val matching = check_gender gender_other
          in 
                if matching then
                   (matching, 
@@ -47,10 +48,21 @@ let
 
          val data = (profile,agent,pid)
          val _ = printWithLabels data
+
+         (*Useless for receiving; The message sent is at level lev_other*)
+         fun listener () = 
+            _setProcessDebuggingName name;
+            receive [hn ("GENDER", s) => printString s];
+
+            listener ()
+
       in 
          send(server_pid,("NEWPROFILE", data));
-         printString "sent"
+         printString "sent";
+
+         listener ()
       end
+
 
 
         
@@ -61,9 +73,8 @@ let
             val _ = printString ("Running client node with identifier: " ^ thisNode)
    
         
-        in 
-                     
-            register ("Alice", spawn (fn () => client `{Alice}` "Alice" 1999 true  ["Conquest", "Pestilence"]), authority)
+        in                       
+            register ("Bottle", spawn (fn () => client `{Bottle}` "Bottle" 2001 true  ["Tacos", "Water", "Conquest"]), authority)
         end
 in main ()
 end
