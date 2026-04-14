@@ -75,7 +75,7 @@ let
    
         
         in                      
-            register ("Strings", spawn (fn () => client `{Strings}` "Strings" 2001 true  ["Burgers", "Soda", "War"]), authority)
+            register ("Mal1", spawn (fn () => client `{mal1}` "Mal1" 2001 true  ["Burgers", "Soda", "War"]), authority)
         end
 in main ()
 end
