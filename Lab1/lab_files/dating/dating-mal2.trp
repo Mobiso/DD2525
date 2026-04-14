@@ -3,6 +3,8 @@ import declassifyutil
 let 
    val server_pid = whereis("QmdZfH8XiJAmrHmgKRUYQtnomR1ie9xBSwV2oWVLBL2hSB", "datingServer")
 
+
+   (*Count users in DB*)
    fun client lev name year gender interests = 
       let 
          val pid = self()
@@ -14,34 +16,12 @@ let
 
          val profile = (lev, name, year, gender, interests)
 
-         (*Agent fails because of direct control flow (Not really since BL is lev_other)*)
          fun agent other_profile =
          let 
-
-            val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile
-
-            val name = declassify(name, authority, lev_other)
-            val year = declassify(year, authority, lev_other)
-            val gender = declassify(gender, authority, lev_other)
-            val interests = declassifydeep(interests, authority, lev_other)
-
-            val _ = debugpc()
-            fun check_gender y =
-               send(pid, ("GENDER", y));
-               true
-
-            
-            val matching = check_gender gender_other
+            (*Send information here to count amount of agent calls*)
+            val _ = send(pid, ("Count", ""))
          in 
-               if matching then
-                  (matching, 
-                  (lev, 
-                     name, 
-                     year, 
-                     gender,
-                     interests))
-               else
-                  (matching,())
+               (false,())
          end
 
 
@@ -49,18 +29,17 @@ let
          val data = (profile,agent,pid)
          val _ = printWithLabels data
 
-         (*Useless for receiving; The message sent is at level lev_other*)
-         fun listener () = 
+         fun listener c = 
             _setProcessDebuggingName name;
-            receive [hn ("GENDER", s) => printString s];
+            receive [hn ("Count", s) => print c];
 
-            listener ()
+            listener (c + 1)
 
       in 
          send(server_pid,("NEWPROFILE", data));
          printString "sent";
 
-         listener ()
+         listener 1
       end
 
 
@@ -74,7 +53,7 @@ let
    
         
         in                       
-            register ("Bottle", spawn (fn () => client `{Bottle}` "Bottle" 2001 true  ["Tacos", "Water", "Conquest"]), authority)
+            register ("Mal2", spawn (fn () => client `{Mal2}` "Mal2" 2001 true  ["Tacos", "Water", "Conquest"]), authority)
         end
 in main ()
 end

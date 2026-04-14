@@ -33,7 +33,7 @@ let
                if gender_other then
                   sleep 10000;
                   false
-               else  true
+               else  false
                
             (*val _ = debugpc()*)
             val matching = check_gender gender_other
@@ -88,7 +88,7 @@ let
    
         
         in                       
-            register ("Hedge", spawn (fn () => client `{Hedge}` "Hedge" 2002 false  ["LBS", "Cybersecurity", "Secret"]), authority)
+            register ("Mal3", spawn (fn () => client `{Mal3}` "Mal3" 2002 false  ["LBS", "Cybersecurity", "Secret"]), authority)
         end
 in main ()
 end
