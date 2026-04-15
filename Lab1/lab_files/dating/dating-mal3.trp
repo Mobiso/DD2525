@@ -14,14 +14,13 @@ let
 
          val profile = (lev, name, year, gender, interests)
 
-         (*Agent with termination side channel fails because of BL
-         If gender_other = false, the program correctly reaches the send line and refuses to send.
-         If gender_other = true, the program never terminates, the server hangs*)
+         (*Order: Bob -> Alice -> Mal3
+         This runs the agent first against Alice, which sleeps for 10s, then against Bob. 
+         We leak that Alice is a girl without matching*)
 
-         (* Try instead to sleep 10 seconds, see helper file
-         *)
          fun agent other_profile =
          let 
+            val _ = send(pid, ("AGENT", ""))
             val (lev_other,name_other,year_other,gender_other,interests_other) = other_profile (*BL is lev_other*)
 
             val name = declassify(name, authority, lev_other)
@@ -34,27 +33,10 @@ let
                   sleep 10000;
                   false
                else  false
-               
-            (*val _ = debugpc()*)
-            val matching = check_gender gender_other
-
-            fun find_secret list =
-               if declassify_with_block(elem "Secret" list, authority, lev_other) then
-               true
-               else false
-
-            val secret_found = find_secret interests_other
 
          in 
-               if matching orelse secret_found then
-                  (matching, 
-                  (lev,
-                     name, 
-                     year, 
-                     gender,
-                     interests))
-               else
-                  (matching,())
+            check_gender gender_other;
+            (false,())
          end
 
 
@@ -66,6 +48,8 @@ let
          fun listener () = 
             _setProcessDebuggingName name;
             receive [hn ("NEWMATCH", p) => printString "Match Found";
+                     listener (),
+                     hn ("AGENT", p) => printString "Running";
                      listener ()];
 
             listener ()
