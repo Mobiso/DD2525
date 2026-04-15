@@ -1,0 +1,8 @@
+REGEX useage:
+
+passports.js uses regex /\d+/ at line 92 
+
+auth.js uses regex /^[ABCDE\d]+$/ at line 33
+
+
+forum.js uses RegExpr
