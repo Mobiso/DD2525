@@ -5,4 +5,22 @@ passports.js uses regex /\d+/ at line 92
 auth.js uses regex /^[ABCDE\d]+$/ at line 33
 
 
-forum.js uses RegExpr
+forum.js uses RegExp
+
+
+
+Running in console causes hang:
+
+/(a+)+$/.test("aaaaaaaaaaaaaaaaaaaaaaaaaaaa!")
+
+mongo DB .find method causes the attack to fail
+
+auth.js and user.js use .match() method;
+
+When regstering users
+username : (a+)+$
+pass: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1
+
+causes crash.
+
+Fix vulnerability by adding fuzzyText function (From https://github.com/jon-love/forumerly/blob/master/routes/forum.js line 104) in auth.js and user.js. The function escapes all RegEx special characters.

@@ -5,6 +5,11 @@ const mongo = require('../db')
 const passport = require('passport')
 require('../passport')
 
+// Returns an escaped regex https://github.com/jon-love/forumerly/blob/master/routes/forum.js
+function fuzzyText(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
+}
+
 
 // Middleware requiring the user to be authenticated
 function validatePassword(req, res, next) {
@@ -13,6 +18,7 @@ function validatePassword(req, res, next) {
 
   //console.log(pass, name)
   // validate password
+  //if (pass.match(fuzzyText(name))) {
   if (pass.match(name)) {
     req.flash('error', 'Do not include name in password.')
     req.flash('message', 'Do not include name in password.')

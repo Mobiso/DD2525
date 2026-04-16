@@ -54,13 +54,18 @@ function adminRequired(req, res, next) {
   }
 }
 
+// Returns an escaped regex https://github.com/jon-love/forumerly/blob/master/routes/forum.js
+function fuzzyText(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
+}
+
 function validatePassword(req, res, next) {
 
   let pass = req.body.newPassword;
   let name = req.user.username;
 
   // vaildate password
-  if (name.match(pass)) {
+  if (name.match(fuzzyText(pass))) {
     req.flash('error', 'Do not include password in name.')
     return res.redirect('back')
   }
