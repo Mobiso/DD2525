@@ -4,6 +4,7 @@ const router = express.Router()
 const mongo = require('../db')
 const ObjectID = require('mongodb').ObjectID
 const moment = require('moment-timezone')
+const crypto = require('crypto');
 
 moment.tz.setDefault("America/New_York") // All formated times will be in this timezone by default
 
@@ -200,6 +201,8 @@ router
   // GET thread by id
   .get('/thread/:id', (req, res) => {
     // Find the thread
+    const nonce = crypto.randomUUID();
+    res.setHeader("Content-Security-Policy", `script-src use.fontawesome.com ajax.googleapis.com cdnjs.cloudflare.com localhost:3000/javascript/`);
     mongo.db.collection('threads')
       .findOne({ _id: new ObjectID.createFromHexString(req.params.id) }, (err, thread) => {
         if(err){console.log(err); res.sendStatus(500)}else if(!!thread) { // If thread is found
@@ -217,8 +220,13 @@ router
                 thread.lcCategory = thread.category.toLowerCase()
                 thread.lcTopic = thread.topic
                 thread.topic = thread.topic.capitalizeFirstLetter()
+                console.log(thread.body.includes('<script'))
+                //Our fix
+                while(thread.body.includes('<script')){
+                  thread.body= thread.body.replace('<script', '')
+                }
                 thread.body = thread.body
-                  .replace('<script', '')
+                  //.replace('<script', '')
                   .replace('<img', '')
                   .replace('<svg', '')
                   .replace('javascript:', '')
@@ -238,6 +246,7 @@ router
         }
       })
   })
+
 
   // POST new thread
   .post('/createThread', loginRequired, (req, res) => {
