@@ -1,4 +1,4 @@
-REGEX useage:
+REGEX Denial Of Service:
 
 passports.js uses regex /\d+/ at line 92 
 
@@ -24,3 +24,16 @@ pass: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1
 causes crash.
 
 Fix vulnerability by adding fuzzyText function (From https://github.com/jon-love/forumerly/blob/master/routes/forum.js line 104) in auth.js and user.js. The function escapes all RegEx special characters.
+
+
+
+XSS:
+In post body:
+
+body</p><script>alert("123")</script>	Removes script tags
+body</p><scr<script>ipt>alert("123")</scr</script>ipt>
+body</p><<script>script>alert("123")<</script>/script>
+body</p><<<script>script>alert("123")<</script>/script>
+body</p><<<scriptscript>alert("123")<</script>/script>
+
+body</p><<scriptscript>alert("123")</script> Small success, but does not run javascript alert.
