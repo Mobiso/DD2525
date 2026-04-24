@@ -132,4 +132,4 @@ Content-Type: application/octet-stream
 
 
 This POST adds admin privileges to the user test1.
-
+To change a user you do not have to know the _id. It can be removed as using the wrong _id causes the login to crash. 
