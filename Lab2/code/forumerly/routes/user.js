@@ -17,6 +17,7 @@ function isObject(item) {
 }
 
 function merge(target, source) {
+  console.log(target === Object.prototype) // If true, we have reached "the top"
   Object.keys(source).forEach(key => {
     if (isObject(source[key])) {
       if (!target[key]) {
@@ -281,7 +282,6 @@ router
   .post('/upload/users', uploadUsers.single('upload-users'), async (req, res) => {
     try {
       var newUsers = JSON.parse(req.file.buffer.toString())
-
       // Wrap the forEach loop with Promise.all()
       await Promise.all(newUsers.map(async (item) => {
         return new Promise(async (resolve, reject) => {
