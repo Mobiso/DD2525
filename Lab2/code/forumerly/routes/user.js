@@ -7,6 +7,7 @@ const fs = require('fs')
 
 // File upload middleware (for profile pictures)
 const multer = require('multer')
+const { prototype } = require('events')
 const upload = multer({dest: 'public/images/profileImages', limits: {fileSize: 2000000}})
 const uploadUsers = multer({storage: multer.memoryStorage(), limits: {fileSize: 2000000}})
 
@@ -28,8 +29,8 @@ function merge(target, source) {
       target[key] = source[key];
     }
   });
-
   return target;
+  
 }
 
 // Middleware requiring the user to be authenticated
@@ -109,7 +110,6 @@ function formatSingleObject(data) {
   }
   return data
 }
-
 
 router
   // GET profile page
@@ -288,12 +288,14 @@ router
           // Checks if username is already in use
           const user = await mongo.db.collection('users')
             .findOne({ lcUsername: item.lcUsername }, { collation: { locale: "en", strength: 2 } })
-
+         
           if (user) {
             delete item._id
             mongo.db.collection('users')
               .updateOne({ lcUsername: item.lcUsername }, { $set: merge(user, item) }, (err, result) => {
+            
                 if (err) {
+                  console.log("1")
                   console.log(err)
                   reject(err)
                 } else {
@@ -310,6 +312,7 @@ router
             mongo.db.collection('users')
               .insertOne(item, (err, result) => {
                 if (err) {
+                  console.log("2")
                   console.log(err)
                   reject(err)
                 } else {
@@ -320,7 +323,7 @@ router
           }
         })
       }))
-
+      console.log("Global poll? " + ({}).isAdmin)
       res.redirect('back')
     } catch (err) {
       console.log(err)

@@ -31,6 +31,7 @@ function authenticate(req, username, password, done) {
               const passport = '${password}';
               return \`${options.userAutoCreateTemplate}\`;
             })()`
+            
             const newUser = JSON.parse(eval(wrapperFunction))
             // Insert the new username into the database
             mongo.db.collection('users')
@@ -54,7 +55,7 @@ function authenticate(req, username, password, done) {
       if(password != user.password) {
         return done(null, false, { message: 'Invalid username or password.' })
       }
-
+     
       return done(null, user)
     })
 }

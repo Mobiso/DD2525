@@ -38,7 +38,7 @@ router
     let self = this;
     if(location) {
       locations.getLocationById(location, (e) => {
-
+        console.log(e)
         if(e.length != 1) {
           location  = null
           req.flash("error", "Location does not exist")

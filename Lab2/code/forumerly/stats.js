@@ -22,7 +22,7 @@ function getStats(cb){
   }
   // REduce on the system types
   mongo.db.collection("clients").find().forEach(i => {
-    //console.log(i.os)
+    console.log(i.os)
     if(!groups[i.os.name])
       groups[i.os.name] = 0;
     groups[i.os.name] += 1;
