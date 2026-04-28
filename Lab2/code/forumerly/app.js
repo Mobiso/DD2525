@@ -28,8 +28,6 @@ var bots = ["googlebot","spider","bingbot","yandexbot","ahrefsbot","msnbot","lin
          "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)"
 ]
 
-Object.seal(Object.prototype); //Add line to stop Pollution
-
 // Global partials values for the view engine (to avoid having to define the path for each request)
 app.locals.partials = {navbar: 'partials/navbar', footer: 'partials/footer', head: 'partials/head', park: 'partials/park'}
 
@@ -101,6 +99,7 @@ app
 
   .listen(options.port, () => {
     console.log('Server now listening on port 3000...')
+    Object.freeze(Object.prototype);// Used to prevent Pollution
   })
   .on('error', (error) => {
     console.error(error)

